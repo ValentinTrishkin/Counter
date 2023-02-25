@@ -7,41 +7,33 @@
 class Counter
 {
 public:
-	int result = 0;
-	int increase(int num_)
+	void increase()
 	{
-		result = ++num_;
-		return result;
+		++num_;		
 	};
-	int decrease(int num_)
+	void decrease()
 	{
-		result = --num_;
-		return result;
+		--num_;
 	};
-	void print()
+	int getNum()
 	{
-
-		std::cout << result << std::endl;
+		return num_;
 	}
 	Counter()
 	{};
-	Counter(int num_)
+	Counter(int num)
 	{
-		num = num_;
+		num_ = num;
 	};
 private:
-	int num = 1;
+	int num_ = 1;
 };
 
 int main()
 {
 	setlocale(LC_ALL, "Rus");
 	system("chcp 1251");
-	char operation = 0;
-
-	Counter count;
-	
-	Counter count_1(int num);
+	char operation = 0;		
 	std::cout << "Вы хотите указать начальное значение счётчика? Введите да или нет: ";
 	std::string choice;
 	std::cin >> choice;
@@ -50,21 +42,22 @@ int main()
 		int num = 0;
 		std::cout << "Введите начальное значение счётчика: ";
 		std::cin >> num;
+		Counter count_1(num);
 		do
 		{
 			std::cout << "Введите команду ('+', '-', '=' или 'x'): ";
 			std::cin >> operation;
 			if (operation == '+')
 			{
-				num = count.increase(num);
+				count_1.increase();
 			}
 			else if (operation == '-')
 			{
-				num = count.decrease(num);
+				count_1.decrease();
 			}
 			else if (operation == '=')
 			{
-				count.print();
+				std::cout << count_1.getNum() << std::endl;
 			}
 			else if (operation == 'х')
 			{
@@ -74,25 +67,24 @@ int main()
 			else (std::cout << "Неверно введен символ.");
 		} while (true);
 	}
-	/*else if (choice == "нет")
+	else if (choice == "нет")
 	{
-		
+		Counter count;
 		do
-		{
-
+		{			
 			std::cout << "Введите команду ('+', '-', '=' или 'x'): ";
 			std::cin >> operation;
 			if (operation == '+')
 			{
-				
+				count.increase();
 			}
 			else if (operation == '-')
 			{
-				num = count.decrease(num);
+				count.decrease();
 			}
 			else if (operation == '=')
 			{
-				count.print();
+				std::cout << count.getNum() << std::endl;
 			}
 			else if (operation == 'х')
 			{
@@ -100,8 +92,8 @@ int main()
 				return 0;
 			}
 			else (std::cout << "Неверно введен символ.");
-		} while (true);*/
-	//}
+		} while (true);
+	}
 	return 0;
 }
 
